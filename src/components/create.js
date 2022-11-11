@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 export class Create extends React.Component {
 
@@ -16,16 +17,29 @@ export class Create extends React.Component {
         }
     }
 
+    //method that gets invoke when hits add button
     handleSubmit(e) {
-        e.preventDefaault();
-        console.log(`${this.state.title}`);
-        console.log(`${this.state.cover}`);
-        console.log(`${this.state.author}`);
+        e.preventDefault();
+        console.log(`Button clicked
+        ${this.state.title},
+        ${this.state.cover},
+        ${this.state.author}`);
+
+        const book = {
+            title: this.state.title,
+            cover: this.state.cover,
+            author: this.state.author
+        }
+
+        //makes a post request to the server (sending a ”book” object to the server)
+        axios.post('http://localhost:4000/api/books', book)
+        .then()
+        .catch();
 
         this.setState({
-            title:'',
-            cover:'',
-            author:''
+            title: '',
+            cover: '',
+            author: ''
         })
     }
 
@@ -53,7 +67,7 @@ export class Create extends React.Component {
                 <h3>Hello from my Create component</h3>
                 <form onSubmit={this.handleSubmit}>
 
-                     {/** create a form and let user to input */}
+                    {/** create a form and let user to input */}
                     <div className="form-group">
                         <label>Add Book Title: </label>
                         <input type="text"
@@ -84,7 +98,7 @@ export class Create extends React.Component {
                     <input type="submit" value="Add Book" />
                 </form>
 
-                
+
             </div>
         );
     }

@@ -4,13 +4,15 @@ import axios from "axios";
 
 export class Read extends React.Component {
 
+    // The componentDidMount() method allows us to execute the React code when the component is already placed in the DOM
     componentDidMount() {
-        axios.get('https://jsonblob.com/api/jsonblob/1027219693823606784')
+        //https request to the localhost server
+        axios.get('http://localhost:4000/api/books') 
         .then(
-            //call arrow function
+            // call setState() immediately in componentDidMount() and update the state from the response and we use myBooks from the server.js
             (response)=>{
                 this.setState({
-                    books:response.data
+                    books:response.data.myBooks
                 })
             }
         )
@@ -19,7 +21,7 @@ export class Read extends React.Component {
             console.log.apply(error)
         });
     }
-
+  
     state = {
         books: []
     }
