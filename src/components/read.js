@@ -12,7 +12,7 @@ export class Read extends React.Component {
             // call setState() immediately in componentDidMount() and update the state from the response and we use myBooks from the server.js
             (response)=>{
                 this.setState({
-                    books:response.data.myBooks
+                    books:response.data
                 })
             }
         )
