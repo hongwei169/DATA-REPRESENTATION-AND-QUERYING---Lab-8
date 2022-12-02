@@ -81,6 +81,15 @@ app.get('/api/book/:id', (req, res) => {
     })
 })
 
+app.put('/api/book/:id', (req, res) => {
+    console.log('Update: ' + req.params.id)
+
+    bookModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
+        (error, data) => {
+            res.send(data);
+        })
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
